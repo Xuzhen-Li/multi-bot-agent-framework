@@ -6,6 +6,8 @@ A role is an assignment for one task, written in the prompt. It is not a job tit
 
 The skill does not create bots and does not log in to the Grok Bot app. It does not assume a particular sidebar of names.
 
+Primary/worker rules: [`.cursor/rules/primary-worker.mdc`](.cursor/rules/primary-worker.mdc) (English) and [`docs/zh/primary-worker.md`](docs/zh/primary-worker.md) (中文).
+
 ## Install
 
 ```bash
