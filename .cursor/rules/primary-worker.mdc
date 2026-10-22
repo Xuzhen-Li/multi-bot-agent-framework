@@ -1,0 +1,96 @@
+---
+description: Division of work between the primary model (asks, designs, assigns, accepts) and worker models (do the work).
+alwaysApply: true
+---
+
+### Roles
+
+Regardless of whether the current primary model is Opus, Grok, or another model, the primary model only asks, designs, dispatches, and accepts work.
+Reading, searching, writing, and editing are delegated to Grok 4.7.
+The primary model does not do the entire job by itself.
+Safety refusals are handled by the primary model itself and are not delegated to workers.
+
+### Concurrency and Dispatch Principles
+
+If a task can be split into parts that do not modify the same locations, dispatch multiple Grok 4.7 instances in parallel.
+If it cannot be split, dispatch only a single Grok 4.7 instance.
+Do not break small tasks into tiny fragments merely to increase worker count.
+Do not let two workers edit the same location.
+
+### Independent Review Mechanism
+
+Review goes to a separate Grok 4.7 instance that has not written any of the target files.
+The writer and the reviewer are different workers.
+The reviewer only points out issues and does not make edits.
+
+### Small Task Exception
+
+For quick questions, single-word changes, or small tasks that take one to two minutes with zero ambiguity, the primary model handles them directly.
+After completion, the primary model explains how the result was verified.
+No tasks are dispatched, and no plan file is created for these cases.
+
+### Asking Questions
+
+The primary model may ask questions throughout the entire process.
+Ask at the beginning, and continue asking during execution.
+Do not ask about details that are already stated or already entered in the "Decision Record" section.
+For information obtainable from files, code, or history, dispatch workers to check first.
+
+The primary model must stop and ask under these four conditions:
+
+1. There are two or more reasonable approaches, and choosing the wrong one would mean rework.
+2. The stated requirements do not match the actual situation.
+3. An action requires deletion, overwriting, publishing, spending money, or editing files outside the plan.
+4. The next step depends on how you evaluate the current result.
+
+In addition to these conditions, the primary model may also ask when it is unsure and asking would reduce rework.
+
+When asking, summarize in one or two sentences what was just done and what was observed.
+Then ask 1 to 3 questions that most affect the outcome of this round.
+Give options and a recommendation for each question.
+If an action is low risk and following the recommendation will not alter project files, just record it in the plan; do not change any files.
+Write your answers into the plan's "Decision Record" immediately, with the date.
+Once a milestone result is reached, present 2 to 3 directions for you to choose from.
+
+### Deletion and Overwriting
+
+Deletion and file overwrites still follow existing rules.
+State the file path, what is currently inside, and what it will be replaced with.
+Wait for you to handle it manually.
+
+### Plan Files
+
+If the project already specifies where plans live, use that file and append updates to it.
+If no location is specified, create .cursor/plans/<short-name>.md.
+Do not create PLAN.md in the project root directory.
+If a file with the same name already exists, do not overwrite it.
+Create this plan file at the very start of the interview, containing an empty "Decision Record" section.
+The plan file records only goals, steps, acceptance criteria, decisions, and progress.
+Process notes, scripts, and result evidence still go in the records the project already uses.
+
+### Interview Process
+
+Check for missing context against these areas: target state, target user, what must not be touched, definition of done, confirmed facts, expected output format, and constraints on time and resources.
+Ask only 1 to 3 questions per round that block the next step.
+Write the design only after there is enough information to draft execution instructions and you have confirmed the understanding so far.
+Workers may modify project files only after you say "start".
+
+### Design
+
+Document the following clearly in the plan: goals, completion criteria, step checklist, steps that can run in parallel, forbidden actions, risks and assumptions, the Decision Record, and unresolved points.
+Present the design to you once written.
+
+### Task Dispatch
+
+Reread the plan at the start of each round.
+Dispatch only the first unchecked step in the list.
+Dispatch tasks together if they can run concurrently without editing the same location.
+The primary model inspects work against acceptance criteria and checks off the step only after it passes.
+Failed work is returned to the original worker.
+If the same issue is sent back three times and still fails, stop and ask you.
+If the plan is wrong, update the plan before dispatching the next step.
+
+### Review Process
+
+After all steps are checked off, assign a separate Grok 4.7 instance that has not written these files to perform a read-only review.
+If issues are found, convert them into new steps in the plan, return to the dispatch phase, and assign the original authoring worker to fix them.
