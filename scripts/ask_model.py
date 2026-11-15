@@ -60,8 +60,10 @@ def main(argv=None):
     p.add_argument("--timeout", type=int, default=600)
     a = p.parse_args(argv)
 
-    if os.path.exists(a.out):
-        p.error(f"{a.out} exists; pick a new name (this script never overwrites)")
+    # Check every file this run may write before any paid call is made.
+    for path in (a.out, a.out + ".meta.json", a.out + ".empty-response.json"):
+        if os.path.exists(path):
+            p.error(f"{path} exists; pick a new --out name (this script never overwrites)")
     with open(a.prompt, encoding="utf-8") as f:
         prompt = f.read()
     system = None
@@ -88,7 +90,15 @@ def main(argv=None):
     with urllib.request.urlopen(http, timeout=a.timeout) as r:
         resp = json.load(r)
     msg = resp["choices"][0]["message"]
-    answer = msg.get("content") or ""
+    answer = msg.get("content")
+    if not answer:
+        # Keep the paid response for inspection, but do not write an empty answer file.
+        bad = a.out + ".empty-response.json"
+        with open(bad, "x", encoding="utf-8") as f:
+            json.dump(resp, f, ensure_ascii=False, indent=2)
+        print(f"error: the model returned no answer text; full response saved to {bad}",
+              file=sys.stderr)
+        return 3
     with open(a.out, "x", encoding="utf-8") as f:
         f.write(answer)
     meta = {

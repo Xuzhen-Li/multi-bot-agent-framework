@@ -81,5 +81,7 @@ python3 scripts/ask_model.py --provider gemini --model gemini-4-hydrogen \
   --prompt review_request.md --out review_v1.md --dry-run   # no network
 ```
 
-The script refuses to write over an existing file and saves a `.meta.json` next to each answer
-with the prompt and answer sha256 and the token usage.
+The script refuses to write over an existing file. It checks the answer file and its
+`.meta.json` before the paid call, then saves the `.meta.json` next to each answer with the
+prompt and answer sha256 and the token usage. If the model returns no answer text, it writes
+no answer file, saves the full response as `<out>.empty-response.json`, and exits with code 3.
