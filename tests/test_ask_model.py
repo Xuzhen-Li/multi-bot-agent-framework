@@ -61,12 +61,13 @@ class FakeResponse:
 class WritePathTest(unittest.TestCase):
     """Run main() with a fake urlopen, so no network and no API key are used."""
 
-    def run_main(self, d, payload):
+    def run_main(self, d, payload, calls=None):
         prompt = os.path.join(d, "p.md")
         if not os.path.exists(prompt):
             with open(prompt, "x") as f:
                 f.write("Review this.")
-        calls = []
+        if calls is None:
+            calls = []
 
         def fake_urlopen(req, timeout=None):
             calls.append(req)
@@ -100,8 +101,10 @@ class WritePathTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             with open(os.path.join(d, "a.md.meta.json"), "x") as f:
                 f.write("{}")
+            calls = []
             with self.assertRaises(SystemExit):
-                self.run_main(d, {"choices": [{"message": {"content": "ok"}}]})
+                self.run_main(d, {"choices": [{"message": {"content": "ok"}}]}, calls)
+            self.assertEqual(len(calls), 0)
             self.assertFalse(os.path.exists(os.path.join(d, "a.md")))
 
     def test_empty_answer_is_an_error(self):
