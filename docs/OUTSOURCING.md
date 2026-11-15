@@ -9,9 +9,9 @@ brief and returns a file. The main agent checks the file before using it.
 | --- | --- | --- |
 | A hard plan or proof where a wrong step costs rework | the strongest reasoning model you have, high or max effort | planning quality decides the rest (aider architect result, [PRACTICE.md](PRACTICE.md) §3) |
 | Many small, well-specified edits after the plan is fixed | a cheaper fast model | the plan already carries the reasoning |
-| Reading a long document set (papers, logs, a whole repo) | a 1M-context model | both Gemini and DeepSeek V4 list 1M context |
+| Reading a long document set (papers, logs, a whole repo) | a 1M-context model | DeepSeek's pricing page lists 1M context for both V4 models; the PAL MCP README describes Gemini as 1M tokens |
 | Review of a draft | a model from a different family than the writer | self-preference bias ([PRACTICE.md](PRACTICE.md) §6) |
-| Final prose polish | one fixed polisher model | stable voice across documents |
+| Final prose polish | one fixed polisher model | house rule from this repo's own use, not from a source |
 
 Do not hand off: decisions that need the owner, anything that deletes or publishes, and safety
 refusals. The main agent handles those itself.
