@@ -1,24 +1,36 @@
-# grok-bot-dispatch
+# multi-bot-agent-framework
 
-A Cursor skill for staffing [Grok Bot](https://x.ai/bot). Primary is the front door. Project bots live in Unassigned. Shared workers live in Role.
+English | [中文说明](docs/zh/practice.md)
 
-A role is an assignment for one task, written in the prompt. It is not a job title locked to a bot's name. When several projects run at once, one role bot keeps one persona and one task. Retask it after that project lets go.
+Rules and a small script for splitting work across several AI agents and models: who plans,
+who writes, who reviews, and when to hand a subtask to Gemini or DeepSeek.
 
-The skill does not create bots and does not log in to the Grok Bot app. It does not assume a particular sidebar of names.
+It started as a Cursor skill for writing Grok Bot prompts with a shared pool of role bots
+([`SKILL.md`](SKILL.md)). The docs below add what public write-ups and papers say about
+multi-agent work, with links.
 
-Primary/worker rules: [`.cursor/rules/primary-worker.mdc`](.cursor/rules/primary-worker.mdc) (English) and [`docs/zh/primary-worker.md`](docs/zh/primary-worker.md) (中文).
+## Files
 
-## Install
+| Path | What it is |
+| --- | --- |
+| [`SKILL.md`](SKILL.md) | Cursor skill: writes a paste-ready Primary prompt with role bots |
+| [`.cursor/rules/primary-worker.mdc`](.cursor/rules/primary-worker.mdc) | Primary/worker rule (English); Chinese in [`docs/zh/primary-worker.md`](docs/zh/primary-worker.md) |
+| [`docs/PRACTICE.md`](docs/PRACTICE.md) | Published practice: when to split, costs, failure modes, review bias |
+| [`docs/OUTSOURCING.md`](docs/OUTSOURCING.md) | When and how to hand a subtask to another model (Gemini, DeepSeek V4) |
+| [`docs/REVIEW_LOOP.md`](docs/REVIEW_LOOP.md) | Sealed rounds, ①/② findings, PASS/FAIL, three-strike stop |
+| [`docs/ROLES.md`](docs/ROLES.md) | Role table: Primary, owner, executor, reviewer, polisher, look-only planner |
+| [`scripts/ask_model.py`](scripts/ask_model.py) | Sends one prompt file to an OpenAI-compatible endpoint, saves the answer, never overwrites |
+| [`examples/`](examples/) | A two-project role pool, and a DeepSeek-plans / Gemini-reviews run |
+
+## Install the skill
 
 ```bash
-git clone https://github.com/Xuzhen-Li/grok-bot-dispatch.git
+git clone https://github.com/Xuzhen-Li/multi-bot-agent-framework.git
 mkdir -p ~/.cursor/skills
-ln -sfn "$(pwd)/grok-bot-dispatch" ~/.cursor/skills/grok-bot-dispatch
+ln -sfn "$(pwd)/multi-bot-agent-framework" ~/.cursor/skills/grok-bot-dispatch
 ```
 
-This skill is not auto-attached. The agent must read `SKILL.md` first.
-
-## Use
+The skill is not auto-attached. Ask the agent to read `SKILL.md` first.
 
 ```text
 Read grok-bot-dispatch/SKILL.md and write a Primary prompt.
@@ -28,7 +40,21 @@ Role: the draft seat writes, the review seat reviews.
 The ops seat is busy on another project until that job finishes.
 ```
 
-The agent returns one block to paste into Primary. A two-project case is in [examples/two-projects.md](examples/two-projects.md).
+## Ask another model from a script
+
+Python 3.9 or newer, standard library only.
+
+```bash
+export DEEPSEEK_API_KEY=...   # or GEMINI_API_KEY
+python3 scripts/ask_model.py --provider deepseek --model deepseek-v4-pro --effort max \
+  --prompt brief.md --out plan_v1.md
+python3 scripts/ask_model.py --provider gemini --model gemini-4-hydrogen \
+  --prompt review_request.md --out review_v1.md --dry-run
+python3 tests/test_ask_model.py
+```
+
+`--dry-run` prints the request and makes no network call. Model names and prices were checked
+on 2026-11-15; see [`docs/OUTSOURCING.md`](docs/OUTSOURCING.md) for the pages to recheck.
 
 ## License
 
