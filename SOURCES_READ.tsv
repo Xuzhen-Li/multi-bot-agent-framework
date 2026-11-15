@@ -1,0 +1,20 @@
+url	what_was_read	date_read	used_for
+https://cognition.ai/blog/dont-build-multi-agents	full post (Walden Yan, 2025-06-12): two principles, Flappy Bird example, Claude Code subagents note	2026-11-15	PRACTICE §1
+https://www.anthropic.com/engineering/building-effective-agents	full post (2024-12-19): workflow list prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer	2026-11-15	PRACTICE §1
+https://www.anthropic.com/engineering/multi-agent-research-system	full post (2025-06-13): orchestrator-worker layout, 90.2% result, 4x and 15x token use, CitationAgent	2026-11-15	PRACTICE §2
+https://aider.chat/2024/09/26/architect.html	full post: Architect/Editor split	2026-11-15	PRACTICE §3
+https://aider.chat/2025/01/24/r1-sonnet.html	full post: R1+Sonnet 64.0%, o1 61.7%, $13.29 vs $186.5 table	2026-11-15	PRACTICE §3
+https://github.com/BeehiveInnovations/pal-mcp-server	README: formerly Zen MCP, supported CLIs and providers, consensus, Gemini 1M tokens	2026-11-15	PRACTICE §4, OUTSOURCING
+https://github.com/google-gemini/gemini-cli	README: non-interactive gemini -p, --output-format json	2026-11-15	PRACTICE §4, OUTSOURCING
+https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/headless.md	headless mode reference: output formats, exit codes	2026-11-15	PRACTICE §4
+https://api-docs.deepseek.com/	first API call page: base URLs, model names deepseek-flash and deepseek-v4-pro	2026-11-15	OUTSOURCING, ask_model.py
+https://api-docs.deepseek.com/quick_start/pricing	models and pricing table: V4.1-Flash-1017, V4-Pro-0813, 1M context, peak/off-peak	2026-11-15	OUTSOURCING
+https://api-docs.deepseek.com/guides/thinking_mode	thinking mode guide: on by default, effort low/high/max, reasoning_effort and thinking params	2026-11-15	OUTSOURCING, ask_model.py
+https://api-docs.deepseek.com/news/news260813	V4-Pro GA note: effort levels, off-peak 50% lower	2026-11-15	OUTSOURCING
+https://ai.google.dev/gemini-api/docs/openai	OpenAI compatibility page: base URL, gemini-4-hydrogen example, reasoning_effort to thinking_level mapping, reasoning cannot be turned off on Gemini 3/4	2026-11-15	OUTSOURCING, ask_model.py
+https://arxiv.org/abs/2503.13657	abstract: MAST, 1600+ traces, 7 frameworks, 14 modes in 3 categories	2026-11-15	PRACTICE §5
+https://arxiv.org/abs/2305.14325	abstract: multiagent debate improves reasoning and factuality	2026-11-15	PRACTICE §6
+https://arxiv.org/abs/2306.05685	abstract: position, verbosity, self-enhancement bias; over 80% agreement	2026-11-15	PRACTICE §6
+https://arxiv.org/abs/2404.13076	abstract: self-recognition correlates with self-preference	2026-11-15	PRACTICE §6
+https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/	blog post: Gemini 2.0, six agents, ranking tournaments	2026-11-15	PRACTICE §7
+https://arxiv.org/abs/2502.18864	abstract: multi-agent architecture, tournament evolution	2026-11-15	PRACTICE §7

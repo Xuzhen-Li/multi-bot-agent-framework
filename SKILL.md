@@ -77,3 +77,15 @@ Report only the result: links and status. No question for me.
 ```
 
 Drop any line that does not apply. Use the sidebar labels as they appear in the app.
+
+## Outside models
+
+Primary may hand one subtask to a model outside the bot pool, such as DeepSeek for a plan or
+Gemini for a cross-family review. Add a line to the prompt naming the model, the input file, the
+output file, and who checks the result. Recipes and endpoints: `docs/OUTSOURCING.md`. Review
+format: `docs/REVIEW_LOOP.md`.
+
+```text
+Outside model for this task only: deepseek-v4-pro, effort max, reads brief.md, writes plan_v1.md.
+Primary reads plan_v1.md before any worker starts.
+```
