@@ -1,5 +1,7 @@
 # Review loop
 
+These are house rules from running this setup. The parts that rest on published work link to [PRACTICE.md](PRACTICE.md); the rest has no outside source.
+
 1. The writer finishes a round and seals it: one new folder per round, a `SHA256SUMS` file,
    and a short `CHANGES_vN.md`.
 2. Each reviewer reads the sealed folder and writes a new report file. Reviewers do not edit.

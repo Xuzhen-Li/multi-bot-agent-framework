@@ -1,5 +1,7 @@
 # Roles
 
+These are house rules from running this setup. The parts that rest on published work link to [PRACTICE.md](PRACTICE.md); the rest has no outside source.
+
 A role is the job a bot holds for one task. It is written in the brief, not in the bot's name.
 
 | Role | Does | Does not |

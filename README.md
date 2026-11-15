@@ -20,6 +20,7 @@ multi-agent work, with links.
 | [`docs/REVIEW_LOOP.md`](docs/REVIEW_LOOP.md) | Sealed rounds, ①/② findings, PASS/FAIL, three-strike stop |
 | [`docs/ROLES.md`](docs/ROLES.md) | Role table: Primary, owner, executor, reviewer, polisher, look-only planner |
 | [`scripts/ask_model.py`](scripts/ask_model.py) | Sends one prompt file to an OpenAI-compatible endpoint, saves the answer, never overwrites |
+| [`SOURCES_READ.tsv`](SOURCES_READ.tsv) | Every outside page read for these docs, what was read, and the date |
 | [`examples/`](examples/) | A two-project role pool, and a DeepSeek-plans / Gemini-reviews run |
 
 ## Install the skill
