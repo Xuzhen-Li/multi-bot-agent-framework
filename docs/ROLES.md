@@ -8,8 +8,8 @@ A role is the job a bot holds for one task. It is written in the brief, not in t
 | --- | --- | --- |
 | Primary | talks to the owner, writes briefs, picks options, merges | write long content itself |
 | Project owner | holds one project's state and history | take a second project |
-| Executor | does the work in a sandbox, seals each round | review its own round |
-| Reviewer | reads a sealed round, writes ①/② findings, PASS or FAIL | edit files |
+| Executor | does the work in a sandbox, freezes each snapshot | review its own snapshot |
+| Reviewer | reads a frozen snapshot, writes blocking/non-blocking findings, PASS or FAIL | edit files |
 | Polisher | rewrites finished prose for readability | change facts, numbers, commands |
 | Look-only planner | gives a plan, a comparison, or a visual check | log in, edit, open PRs |
 
