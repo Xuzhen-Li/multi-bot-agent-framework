@@ -17,7 +17,7 @@ multi-agent work, with links.
 | [`.cursor/rules/primary-worker.mdc`](.cursor/rules/primary-worker.mdc) | Primary/worker rule (English); Chinese in [`docs/zh/primary-worker.md`](docs/zh/primary-worker.md) |
 | [`docs/PRACTICE.md`](docs/PRACTICE.md) | Published practice: when to split, costs, failure modes, review bias |
 | [`docs/OUTSOURCING.md`](docs/OUTSOURCING.md) | When and how to hand a subtask to another model (Gemini, DeepSeek V4) |
-| [`docs/REVIEW_LOOP.md`](docs/REVIEW_LOOP.md) | Sealed rounds, ①/② findings, PASS/FAIL, three-strike stop |
+| [`docs/REVIEW_LOOP.md`](docs/REVIEW_LOOP.md) | Frozen snapshots, blocking/non-blocking findings, PASS/FAIL, three-strike stop |
 | [`docs/ROLES.md`](docs/ROLES.md) | Role table: Primary, owner, executor, reviewer, polisher, look-only planner |
 | [`scripts/ask_model.py`](scripts/ask_model.py) | Sends one prompt file to an OpenAI-compatible endpoint, saves the answer, never overwrites |
 | [`SOURCES_READ.tsv`](SOURCES_READ.tsv) | Every outside page read for these docs, what was read, and the date |
